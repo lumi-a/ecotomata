@@ -1,0 +1,88 @@
+[gd_scene load_steps=29 format=3 uid="uid://c7xcfasj02yds"]
+
+[ext_resource type="PackedScene" uid="uid://ol5p7qp50t3d" path="res://assets/plants/crops_wheatStageA.glb" id="3_loy20"]
+[ext_resource type="PackedScene" uid="uid://bkjeyo7ypkky2" path="res://assets/plants/flower_purpleA.glb" id="4_rywps"]
+[ext_resource type="PackedScene" uid="uid://d1d0d8ll8l2k3" path="res://assets/plants/flower_purpleB.glb" id="5_bdi5n"]
+[ext_resource type="PackedScene" uid="uid://dpk8n4e1uyxfw" path="res://assets/plants/flower_purpleC.glb" id="6_u8e6p"]
+[ext_resource type="PackedScene" uid="uid://dk76vfyyc40o2" path="res://assets/plants/flower_redA.glb" id="7_fi66r"]
+[ext_resource type="PackedScene" uid="uid://bhihmk54t116w" path="res://assets/plants/flower_redB.glb" id="8_j7s7d"]
+[ext_resource type="PackedScene" uid="uid://doswvwmta25et" path="res://assets/plants/flower_redC.glb" id="9_yuqjg"]
+[ext_resource type="PackedScene" uid="uid://up2mbkar7x3v" path="res://assets/plants/flower_yellowA.glb" id="10_tulaw"]
+[ext_resource type="PackedScene" uid="uid://ch26cvv11jjoc" path="res://assets/plants/flower_yellowB.glb" id="11_6epcq"]
+[ext_resource type="PackedScene" uid="uid://ducaoqusgdu7t" path="res://assets/plants/flower_yellowC.glb" id="12_omra0"]
+[ext_resource type="PackedScene" uid="uid://chp7uaiscpaib" path="res://assets/plants/grass.glb" id="13_44f1k"]
+[ext_resource type="PackedScene" uid="uid://dvuth328ohote" path="res://assets/plants/grass_large.glb" id="14_frwet"]
+[ext_resource type="PackedScene" uid="uid://bcfwpu8u0iq7" path="res://assets/plants/grass_leafs.glb" id="15_ukcdq"]
+[ext_resource type="PackedScene" uid="uid://bo3ci5fycif5b" path="res://assets/plants/grass_leafsLarge.glb" id="16_orsax"]
+[ext_resource type="PackedScene" uid="uid://egoa1ef5k6y" path="res://assets/plants/mushroom_red.glb" id="17_2xwgq"]
+[ext_resource type="PackedScene" uid="uid://bwavnkynayyao" path="res://assets/plants/mushroom_redGroup.glb" id="18_rdma7"]
+[ext_resource type="PackedScene" uid="uid://81wp2o6u0w32" path="res://assets/plants/mushroom_redTall.glb" id="19_455mh"]
+[ext_resource type="PackedScene" uid="uid://bfvd66hp34okm" path="res://assets/plants/mushroom_tan.glb" id="20_rxnwp"]
+[ext_resource type="PackedScene" uid="uid://cc060sp50shgj" path="res://assets/plants/mushroom_tanGroup.glb" id="21_axxxx"]
+[ext_resource type="PackedScene" uid="uid://2l3mhlg78jwl" path="res://assets/plants/mushroom_tanTall.glb" id="22_7wq5a"]
+[ext_resource type="PackedScene" uid="uid://bf6k4cowcxpnv" path="res://assets/plants/plant_bush.glb" id="23_ikp70"]
+[ext_resource type="PackedScene" uid="uid://c1se7j2krkmwu" path="res://assets/plants/plant_bushDetailed.glb" id="24_uy881"]
+[ext_resource type="PackedScene" uid="uid://d1jqiyc4ekp0o" path="res://assets/plants/plant_bushLarge.glb" id="25_pmeax"]
+[ext_resource type="PackedScene" uid="uid://c1h18ekapm33x" path="res://assets/plants/plant_bushLargeTriangle.glb" id="26_yu6av"]
+[ext_resource type="PackedScene" uid="uid://75i334a6dl0g" path="res://assets/plants/plant_bushSmall.glb" id="27_7vg6u"]
+[ext_resource type="PackedScene" uid="uid://b8q22abjq73s5" path="res://assets/plants/plant_bushTriangle.glb" id="28_1h12a"]
+[ext_resource type="PackedScene" uid="uid://4f0j3uehy2jl" path="res://assets/plants/plant_flatShort.glb" id="29_8h1dv"]
+[ext_resource type="PackedScene" uid="uid://chcph1ghmfef4" path="res://assets/plants/plant_flatTall.glb" id="30_l6dhp"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="crops_wheatStageA" parent="." instance=ExtResource("3_loy20")]
+
+[node name="flower_purpleA" parent="." instance=ExtResource("4_rywps")]
+
+[node name="flower_purpleB" parent="." instance=ExtResource("5_bdi5n")]
+
+[node name="flower_purpleC" parent="." instance=ExtResource("6_u8e6p")]
+
+[node name="flower_redA" parent="." instance=ExtResource("7_fi66r")]
+
+[node name="flower_redB" parent="." instance=ExtResource("8_j7s7d")]
+
+[node name="flower_redC" parent="." instance=ExtResource("9_yuqjg")]
+
+[node name="flower_yellowA" parent="." instance=ExtResource("10_tulaw")]
+
+[node name="flower_yellowB" parent="." instance=ExtResource("11_6epcq")]
+
+[node name="flower_yellowC" parent="." instance=ExtResource("12_omra0")]
+
+[node name="grass" parent="." instance=ExtResource("13_44f1k")]
+
+[node name="grass_large" parent="." instance=ExtResource("14_frwet")]
+
+[node name="grass_leafs" parent="." instance=ExtResource("15_ukcdq")]
+
+[node name="grass_leafsLarge" parent="." instance=ExtResource("16_orsax")]
+
+[node name="mushroom_red" parent="." instance=ExtResource("17_2xwgq")]
+
+[node name="mushroom_redGroup" parent="." instance=ExtResource("18_rdma7")]
+
+[node name="mushroom_redTall" parent="." instance=ExtResource("19_455mh")]
+
+[node name="mushroom_tan" parent="." instance=ExtResource("20_rxnwp")]
+
+[node name="mushroom_tanGroup" parent="." instance=ExtResource("21_axxxx")]
+
+[node name="mushroom_tanTall" parent="." instance=ExtResource("22_7wq5a")]
+
+[node name="plant_bush" parent="." instance=ExtResource("23_ikp70")]
+
+[node name="plant_bushDetailed" parent="." instance=ExtResource("24_uy881")]
+
+[node name="plant_bushLarge" parent="." instance=ExtResource("25_pmeax")]
+
+[node name="plant_bushLargeTriangle" parent="." instance=ExtResource("26_yu6av")]
+
+[node name="plant_bushSmall" parent="." instance=ExtResource("27_7vg6u")]
+
+[node name="plant_bushTriangle" parent="." instance=ExtResource("28_1h12a")]
+
+[node name="plant_flatShort" parent="." instance=ExtResource("29_8h1dv")]
+
+[node name="plant_flatTall" parent="." instance=ExtResource("30_l6dhp")]

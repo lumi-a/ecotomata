@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://baw7th36yv3e"]
+
+[sub_resource type="Curve" id="Curve_3i3mr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.753623, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bf24s"]
+curve = SubResource("Curve_3i3mr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_57kjm"]
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 1.5
+initial_velocity_max = 2.5
+gravity = Vector3(0, 7.5, 0)
+damping_min = 3.0
+damping_max = 3.0
+scale_curve = SubResource("CurveTexture_bf24s")
+hue_variation_min = -0.55
+hue_variation_max = 0.46
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfxum"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.75, 0.328125, 0.1875, 0.501961)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bane1"]
+material = SubResource("StandardMaterial3D_mfxum")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlxwn"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.75, 0.46875, 0.1875, 0.501961)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uvcrn"]
+material = SubResource("StandardMaterial3D_xlxwn")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pr3pu"]
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 10, 0)
+damping_min = 3.0
+damping_max = 3.0
+scale_curve = SubResource("CurveTexture_bf24s")
+hue_variation_min = -0.55
+hue_variation_max = 0.46
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yp7p"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.75, 0.609375, 0.1875, 0.501961)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w151q"]
+material = SubResource("StandardMaterial3D_3yp7p")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="fire" type="Node3D"]
+
+[node name="outer" type="GPUParticles3D" parent="."]
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_57kjm")
+draw_pass_1 = SubResource("BoxMesh_bane1")
+
+[node name="medium" type="GPUParticles3D" parent="."]
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_57kjm")
+draw_pass_1 = SubResource("BoxMesh_uvcrn")
+
+[node name="inner" type="GPUParticles3D" parent="."]
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_pr3pu")
+draw_pass_1 = SubResource("BoxMesh_w151q")

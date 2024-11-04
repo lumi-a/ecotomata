@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://dj4v6ns8px2mu"]
+
+[ext_resource type="Script" path="res://camera_rotation.gd" id="1_lsrg4"]
+[ext_resource type="PackedScene" uid="uid://bcjiqjl5vu1tl" path="res://island.tscn" id="2_5c6a2"]
+[ext_resource type="Shader" path="res://water.gdshader" id="2_dsdxd"]
+[ext_resource type="Script" path="res://island.gd" id="4_c1278"]
+
+[sub_resource type="Environment" id="Environment_vri3a"]
+background_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_eovhl"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2ogrw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3v6aw"]
+color_ramp = SubResource("Gradient_eovhl")
+noise = SubResource("FastNoiseLite_2ogrw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxo6q"]
+render_priority = 0
+shader = ExtResource("2_dsdxd")
+shader_parameter/water_color = Color(0.1, 0.3, 0.5, 0.8)
+shader_parameter/wave_speed = 0.1
+shader_parameter/wave_strength = 0.2
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_3v6aw")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y60lx"]
+material = SubResource("ShaderMaterial_kxo6q")
+size = Vector2(100, 100)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.5322)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vri3a")
+
+[node name="camera_rotation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_lsrg4")
+
+[node name="camera" type="Camera3D" parent="camera_rotation"]
+transform = Transform3D(1, 0, 0, 0, 0.761719, 0.647907, 0, -0.647907, 0.761719, 0, 34.3858, 27.8623)
+
+[node name="water" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_y60lx")
+
+[node name="island" parent="." instance=ExtResource("2_5c6a2")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, -1.78065, 0)
+
+[node name="Node3D" type="Node3D" parent="island"]
+script = ExtResource("4_c1278")
+
+[node name="SpawnArea" type="CollisionPolygon3D" parent="island"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.14576, 0)
+polygon = PackedVector2Array(0.0802379, 0.361721, 0.320531, 0.153045, 0.380605, -0.0872488, 0.330017, -0.239013, -0.0399089, -0.295925, -0.251747, -0.362322, -0.428805, -0.163131, -0.292849, 0.045545, -0.216967, 0.257383)
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.252998, 0.967467, 0, -0.967467, 0.252998, -6.61002, 40.3401, -0.443819)
+shadow_enabled = true
