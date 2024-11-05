@@ -61,16 +61,16 @@ size = Vector3(0.1, 0.1, 0.1)
 [node name="fire" type="Node3D"]
 
 [node name="outer" type="GPUParticles3D" parent="."]
-amount = 200
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_57kjm")
 draw_pass_1 = SubResource("BoxMesh_bane1")
 
 [node name="medium" type="GPUParticles3D" parent="."]
-amount = 200
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_57kjm")
 draw_pass_1 = SubResource("BoxMesh_uvcrn")
 
 [node name="inner" type="GPUParticles3D" parent="."]
-amount = 200
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_pr3pu")
 draw_pass_1 = SubResource("BoxMesh_w151q")
