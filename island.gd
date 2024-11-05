@@ -1,12 +1,15 @@
 extends Node3D
 
 @export var camera_rotation_node: Node3D
-@export var num_initial_trees: int = 25
-@export var min_neighbor_distance: float = 0.1
-@export var max_neighbor_distance: float = 1.0
-@export var num_plants: int = 1000
-@export var max_raycast_distance: float = 50.0
+
+const num_initial_sapling_attempts: int = 1000
+const min_neighbor_distance: float = 0.2
+const max_neighbor_distance: float = 1.0
+const num_plants: int = 1000
+const max_raycast_distance: float = 50.0
+
 @export var expected_lightnings_per_second: float = 1.0
+@export var expected_saplings_per_second: float = 10.0
 var space_state: PhysicsDirectSpaceState3D
 var aabb = $rock_largeE.get_aabb()
 var all_trees = preload("res://assets/trees/all.tscn").instantiate()
@@ -109,12 +112,8 @@ func _ready():
 				plant.rotate(axis, angle)
 
 	# Spawn trees		
-	var attempts = 0
-	var max_attempts = num_initial_trees * 10
-	
-	while trees.size() < num_initial_trees and attempts < max_attempts:
-		if try_adding_tree():
-			attempts += 1
+	for _attempts in num_initial_sapling_attempts:
+		try_adding_tree()
 
 func poisson(λ:float):
 	# https://en.wikipedia.org/wiki/Poisson_distribution#Computational_methods
@@ -128,7 +127,7 @@ func poisson(λ:float):
 		s += p
 	return x
 
-func light_up_tree(tree):
+func light_up_tree(tree) -> bool:
 	var id = tree.get_instance_id()
 	if tree_states[id] == TreeState.Static:
 		tree_states[id] = TreeState.StartedBurning
@@ -138,6 +137,8 @@ func light_up_tree(tree):
 		var fire_instance = fire.duplicate()
 		tree_fires[id] = fire_instance
 		tree.add_child(fire_instance)
+		return true
+	return false
 	
 func _process(delta):
 	var num_lightnings = poisson(expected_lightnings_per_second * delta)
@@ -146,12 +147,17 @@ func _process(delta):
 	if trees.size() > 0:
 		for _i in num_lightnings:
 			var hit_tree = trees[randi() % trees.size()]
-			light_up_tree(hit_tree)
-			# Thundr
-			var new_lightning = lightning_instance.duplicate()
-			new_lightning.position = hit_tree.position
-			new_lightning.rotation.y = camera_rotation_node.rotation.y
-			add_child(new_lightning)
+			if light_up_tree(hit_tree):
+				# Thundr
+				var new_lightning = lightning_instance.duplicate()
+				new_lightning.position = hit_tree.position
+				new_lightning.rotation.y = camera_rotation_node.rotation.y
+				add_child(new_lightning)
+	
+	var num_saplings = poisson(expected_saplings_per_second * delta)
+	if trees.size() > 0:
+		for _i in num_saplings:
+			try_adding_tree()
 
 	var tree_ix = 0
 	while tree_ix < trees.size():
