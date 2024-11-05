@@ -1,6 +1,5 @@
 [gd_scene load_steps=31 format=3 uid="uid://cqv8ppv34gkr6"]
 
-[ext_resource type="Script" path="res://assets/tree.gd" id="1_25vdn"]
 [ext_resource type="PackedScene" uid="uid://bwjpx44f0mklh" path="res://assets/trees/tree_blocks.glb" id="1_74rux"]
 [ext_resource type="PackedScene" uid="uid://du72tuti7qaav" path="res://assets/trees/tree_cone.glb" id="2_33yhm"]
 [ext_resource type="PackedScene" uid="uid://cktictl1rkkw1" path="res://assets/trees/tree_default.glb" id="3_bystc"]
