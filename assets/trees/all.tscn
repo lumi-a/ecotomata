@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cqv8ppv34gkr6"]
+[gd_scene load_steps=30 format=3 uid="uid://cqv8ppv34gkr6"]
 
 [ext_resource type="PackedScene" uid="uid://bwjpx44f0mklh" path="res://assets/trees/tree_blocks.glb" id="1_74rux"]
 [ext_resource type="PackedScene" uid="uid://du72tuti7qaav" path="res://assets/trees/tree_cone.glb" id="2_33yhm"]
@@ -31,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://d2aa26ehd66qb" path="res://assets/trees/tree_thin.glb" id="29_upfek"]
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_25vdn")
 
 [node name="tree_blocks" parent="." instance=ExtResource("1_74rux")]
 
