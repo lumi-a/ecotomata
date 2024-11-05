@@ -45,7 +45,7 @@ func try_adding_tree():
 	var query = PhysicsRayQueryParameters3D.create(random_point + Vector3.UP * max_raycast_distance, random_point - Vector3.UP * max_raycast_distance)
 	var result = space_state.intersect_ray(query)
 	
-	if not result:
+	if not result or result.position.y > 0.2:
 		return false
 		 
 	# Search neighbors, or terminate early if a neighbor is too close
