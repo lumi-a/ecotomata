@@ -1,5 +1,6 @@
 extends Node3D
 
+@export var camera_rotation_node: Node3D
 @export var num_initial_trees: int = 25
 @export var min_neighbor_distance: float = 0.1
 @export var max_neighbor_distance: float = 1.0
@@ -11,7 +12,7 @@ var aabb = $rock_largeE.get_aabb()
 var all_trees = preload("res://assets/trees/all.tscn").instantiate()
 var all_plants = preload("res://assets/plants/all.tscn").instantiate()
 var fire = preload("res://assets/fire.tscn").instantiate()
-var lightning_instance = preload("res://lightning.tscn").instantiate()
+var lightning_instance = preload("res://assets/lightning.tscn").instantiate()
 
 var polygon_points: PackedVector2Array
 
@@ -146,9 +147,10 @@ func _process(delta):
 		for _i in num_lightnings:
 			var hit_tree = trees[randi() % trees.size()]
 			light_up_tree(hit_tree)
-			# Thundar
+			# Thundr
 			var new_lightning = lightning_instance.duplicate()
 			new_lightning.position = hit_tree.position
+			new_lightning.rotation.y = camera_rotation_node.rotation.y
 			add_child(new_lightning)
 
 	var tree_ix = 0

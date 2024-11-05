@@ -53,10 +53,16 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 10, 10)
 [node name="water" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_y60lx")
 
-[node name="island" parent="." instance=ExtResource("2_5c6a2")]
+[node name="island" parent="." node_paths=PackedStringArray("camera_rotation_node") instance=ExtResource("2_5c6a2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.810748, 0)
 script = ExtResource("4_c1278")
+camera_rotation_node = NodePath("../camera_rotation")
 num_initial_trees = 1000
+min_neighbor_distance = null
+max_neighbor_distance = null
+num_plants = null
+max_raycast_distance = null
+expected_lightnings_per_second = null
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.252998, 0.967467, 0, -0.967467, 0.252998, -6.61002, 40.3401, -0.405594)
