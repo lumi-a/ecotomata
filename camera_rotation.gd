@@ -7,4 +7,4 @@ func _ready() -> void:
 
 
 func _process(delta):
-	rotation.y += 0.25 * delta
+	rotation.y += 0.125 * delta
