@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://qbi4of147l46"]
+
+[ext_resource type="Script" path="res://lightning.gd" id="1_vy1ng"]
+[ext_resource type="Texture2D" uid="uid://dwtq8khuumxvn" path="res://assets/lightning.png" id="2_ndkmp"]
+
+[node name="lightning" type="Node3D"]
+script = ExtResource("1_vy1ng")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.12, 0)
+texture = ExtResource("2_ndkmp")
