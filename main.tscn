@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dj4v6ns8px2mu"]
+[gd_scene load_steps=11 format=3 uid="uid://dj4v6ns8px2mu"]
 
 [ext_resource type="Script" path="res://camera_rotation.gd" id="1_lsrg4"]
 [ext_resource type="PackedScene" uid="uid://bcjiqjl5vu1tl" path="res://island.tscn" id="2_5c6a2"]
@@ -18,25 +18,23 @@ background_mode = 2
 background_energy_multiplier = 0.5
 sky = SubResource("Sky_0sog2")
 
-[sub_resource type="Gradient" id="Gradient_eovhl"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2ogrw"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3v6aw"]
-color_ramp = SubResource("Gradient_eovhl")
-noise = SubResource("FastNoiseLite_2ogrw")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxo6q"]
 render_priority = 0
 shader = ExtResource("2_dsdxd")
-shader_parameter/water_color = Color(0.1, 0.3, 0.5, 0.8)
-shader_parameter/wave_speed = 0.1
-shader_parameter/wave_strength = 0.2
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_3v6aw")
+shader_parameter/WATER_COL = Vector4(0.25, 0.5, 0.75, 1)
+shader_parameter/WATER2_COL = Vector4(0.05, 0.3, 0.65, 1)
+shader_parameter/FOAM_COL = Vector4(0.45, 0.7, 0.95, 1)
+shader_parameter/distortion_speed = 1.0
+shader_parameter/tile = Vector2(96, 96)
+shader_parameter/height = 1.0
+shader_parameter/wave_size = Vector2(20, 20)
+shader_parameter/wave_speed = 2.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y60lx"]
 material = SubResource("ShaderMaterial_kxo6q")
-size = Vector2(100, 100)
+size = Vector2(64, 64)
+subdivide_width = 32
+subdivide_depth = 32
 
 [node name="Node3D" type="Node3D"]
 

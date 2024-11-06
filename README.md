@@ -10,9 +10,8 @@ Made using [Godot](https://godotengine.org/) v4.3, which hopefully means you can
 - [ ] Add github description
 - [ ] Add banner.png to Readme.md
 - [ ] Figure out how to host this on github pages
-    - Once hosted, add link to github and readme
-    - If hosting isn't possible, put releases on github
+	- Once hosted, add link to github and readme
+	- If hosting isn't possible, put releases on github
 - [ ] GUI
 - [ ] Playtesting
-- [ ] Proper water
 - [ ] Sound? Music?
