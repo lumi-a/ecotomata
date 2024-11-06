@@ -15,3 +15,4 @@ Made using [Godot](https://godotengine.org/) v4.3, which hopefully means you can
 - [ ] GUI
 - [ ] Playtesting
 - [ ] Sound? Music?
+- [ ] Have orbs disappear eventually
