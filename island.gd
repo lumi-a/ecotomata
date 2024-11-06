@@ -4,7 +4,7 @@ extends Node3D
 
 const num_initial_sapling_attempts: int = 1000
 const min_neighbor_distance: float = 0.2
-const max_neighbor_distance: float = 1.0
+const max_neighbor_distance: float = 1.5
 const num_plants: int = 1000
 const max_raycast_distance: float = 50.0
 
