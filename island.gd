@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var camera_rotation_node: Node3D
+var camera: Camera3D
 
 const num_initial_sapling_attempts: int = 1000
 const min_neighbor_distance: float = 0.2
@@ -10,12 +11,15 @@ const max_raycast_distance: float = 50.0
 
 @export var expected_lightnings_per_second: float = 1.0
 @export var expected_saplings_per_second: float = 10.0
+const expected_orbs_per_second_per_tree: float = 0.1
+
 var space_state: PhysicsDirectSpaceState3D
 var aabb = $rock_largeE.get_aabb()
 var all_trees = preload("res://assets/trees/all.tscn").instantiate()
 var all_plants = preload("res://assets/plants/all.tscn").instantiate()
 var fire = preload("res://assets/fire.tscn").instantiate()
 var lightning_instance = preload("res://assets/lightning.tscn").instantiate()
+var orb_instance = preload("res://assets/orb.tscn").instantiate()
 
 var polygon_points: PackedVector2Array
 
@@ -93,6 +97,7 @@ func try_adding_tree():
 
 
 func _ready():
+	camera = camera_rotation_node.get_node("camera")
 	space_state = get_world_3d().direct_space_state
 	# Spawn plants
 	for _i in num_plants:
@@ -165,7 +170,12 @@ func _process(delta):
 		var id = tree.get_instance_id()
 		match tree_states[id]:
 			TreeState.Static:
-				pass
+				var num_orbs = poisson(expected_orbs_per_second_per_tree * delta)
+				for _i in num_orbs:
+					var orb = orb_instance.duplicate()
+					orb.position = camera.unproject_position(tree.position + Vector3.UP * 0.875)
+					
+					add_child(orb)
 
 			TreeState.Growing:
 				tree_timers[id] += delta
