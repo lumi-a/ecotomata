@@ -47,7 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399703, 0)
 script = ExtResource("1_lsrg4")
 
 [node name="camera" type="Camera3D" parent="camera_rotation"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 10, 10)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 12.5, 10)
 
 [node name="water" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_y60lx")

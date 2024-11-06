@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://uldf7cscwd8h"]
+[gd_scene load_steps=3 format=3 uid="uid://uldf7cscwd8h"]
 
+[ext_resource type="Script" path="res://assets/orb.gd" id="1_0bb1f"]
 [ext_resource type="Texture2D" uid="uid://btj7ljt1fqqho" path="res://assets/orb.png" id="1_eoxjx"]
 
 [node name="orb" type="Node2D"]
+script = ExtResource("1_0bb1f")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+linear_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+modulate = Color(1, 1, 1, 0.266667)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_eoxjx")
