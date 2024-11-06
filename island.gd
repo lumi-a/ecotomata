@@ -188,8 +188,10 @@ func _process(delta):
 				tree_timers[id] += delta
 				tree.scale = lerp(Vector3.ONE, Vector3.ZERO, tree_timers[id] / burning_down_time)
 				if tree_timers[id] >= burning_down_time:
-					for particle in tree_fires[id].get_children():
-						particle.emitting = false
+					for child in tree_fires[id].get_children():
+						# If particle-generator, stop emission:
+						if child is GPUParticles3D:
+							child.emitting = false
 
 					tree_states[id] = TreeState.Embers
 					tree_timers[id] = 0.0
