@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://5gxvcn5626kc"]
+[gd_scene load_steps=7 format=3 uid="uid://5gxvcn5626kc"]
 
 [ext_resource type="Theme" uid="uid://bw6ohcdth43os" path="res://assets/ui.tres" id="1_5nsp2"]
+[ext_resource type="Script" path="res://ui.gd" id="1_injo3"]
 [ext_resource type="Texture2D" uid="uid://btj7ljt1fqqho" path="res://assets/orb.png" id="2_csf5k"]
 [ext_resource type="Theme" uid="uid://bqd3iuc5i6ovw" path="res://assets/ui-small.tres" id="3_a7ear"]
 
@@ -26,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_injo3")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 visible = false
@@ -53,7 +55,7 @@ texture_filter = 1
 layout_mode = 2
 texture = ExtResource("2_csf5k")
 
-[node name="orb-counter" type="Label" parent="PanelContainer/VBoxContainer/orb-container"]
+[node name="orb-label" type="Label" parent="PanelContainer/VBoxContainer/orb-container"]
 layout_mode = 2
 
 [node name="trees-container" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
@@ -61,6 +63,7 @@ layout_mode = 2
 
 [node name="trees-buy" type="Button" parent="PanelContainer/VBoxContainer/trees-container"]
 layout_mode = 2
+disabled = true
 text = "+ Trees"
 
 [node name="trees-range" type="ProgressBar" parent="PanelContainer/VBoxContainer/trees-container"]
@@ -80,6 +83,7 @@ layout_mode = 2
 
 [node name="flowers-buy" type="Button" parent="PanelContainer/VBoxContainer/flowers-container"]
 layout_mode = 2
+disabled = true
 text = "+ Flowers"
 
 [node name="flowers-range" type="ProgressBar" parent="PanelContainer/VBoxContainer/flowers-container"]

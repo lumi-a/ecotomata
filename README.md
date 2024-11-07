@@ -16,3 +16,4 @@ Made using [Godot](https://godotengine.org/) v4.3, which hopefully means you can
 - [ ] Playtesting
 - [ ] Sound? Music?
 - [ ] Have orbs disappear eventually
+- [ ] Actually add flowers to the island when buying them, and start with 0 on the island

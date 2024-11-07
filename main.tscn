@@ -56,8 +56,6 @@ mesh = SubResource("PlaneMesh_y60lx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.810748, 0)
 script = ExtResource("4_c1278")
 camera_rotation_node = NodePath("../camera_rotation")
-expected_lightnings_per_second = null
-expected_saplings_per_second = null
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.252998, 0.967467, 0, -0.967467, 0.252998, -6.61002, 40.3401, -0.405594)

@@ -2,6 +2,7 @@ extends Node3D
 
 @export var camera_rotation_node: Node3D
 var camera: Camera3D
+@export var ui_node: Control
 
 const num_initial_sapling_attempts: int = 1000
 const min_neighbor_distance: float = 0.2
@@ -98,6 +99,7 @@ func try_adding_tree():
 
 func _ready():
 	camera = camera_rotation_node.get_node("camera")
+
 	space_state = get_world_3d().direct_space_state
 	# Spawn plants
 	for _i in num_plants:
