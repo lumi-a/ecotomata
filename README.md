@@ -14,5 +14,5 @@ Made using [Godot](https://godotengine.org/) v4.3, which hopefully means you can
 	- If hosting isn't possible, put releases on github
 - [ ] Playtesting
 - [ ] Sound? Music?
-- [ ] Actually add flowers to the island when buying them, and start with 0 on the island
 - [ ] Title screen
+- [ ] Unlock tree-variants over time
