@@ -12,7 +12,7 @@ Made using [Godot](https://godotengine.org/) v4.3, which hopefully means you can
 - [ ] Figure out how to host this on github pages
 	- Once hosted, add link to github and readme
 	- If hosting isn't possible, put releases on github
-- [ ] GUI
 - [ ] Playtesting
 - [ ] Sound? Music?
 - [ ] Actually add flowers to the island when buying them, and start with 0 on the island
+- [ ] Title screen
