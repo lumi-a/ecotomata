@@ -1,5 +1,8 @@
 extends Control
 
+# Controls everything related to
+# buying, displaying, and managing upgrades.
+
 var orb_label: Label
 var tree_buy_button: Button
 var tree_label: Label
@@ -14,7 +17,6 @@ var flower_range: Range
 @export var flower_level: int = 0
 @export var flower_max_level: int = 5
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	orb_label = $PanelContainer/VBoxContainer/OrbContainer/OrbLabel
 	
