@@ -3,6 +3,8 @@ extends Control
 # Controls everything related to
 # buying, displaying, and managing upgrades.
 
+signal bought_flowers
+
 var orb_label: Label
 var tree_buy_button: Button
 var tree_label: Label
@@ -63,6 +65,7 @@ func update_flower_button_text():
 		flower_buy_button.text = "+ Flowers: Max!"
 func buy_flower():
 	if flower_cost <= orbs:
+		bought_flowers.emit()
 		orbs -= flower_cost
 		flower_level += 1
 		flower_range.value = flower_level

@@ -39,6 +39,8 @@ const started_burning_time = 0.25
 const burning_down_time = 0.5
 const ember_time = 1.0
 
+var flower_attempts = 0 # How many flowers should be bought in the next couple frames
+var max_flowers_per_frame = 10 # At most how many flowers to try adding per frame
 
 func remove_all_but_one(variant: Variant):
 	var children = variant.get_children()
@@ -93,27 +95,29 @@ func try_adding_tree():
 	
 	return true
 
+func buy_flowers():
+	flower_attempts += 250
+
+func try_adding_flower():
+	var random_point = aabb.position + Vector3(randf_range(-20, 20) * aabb.size.x, 0, randf_range(-20, 20) * aabb.size.z)
+	var query = PhysicsRayQueryParameters3D.create(random_point + Vector3.UP * max_raycast_distance, random_point - Vector3.UP * max_raycast_distance)
+	var result = space_state.intersect_ray(query)
+	if result and result.position.y > 0.2:
+		var plant = all_plants.duplicate()
+		remove_all_but_one(plant)
+		add_child(plant)
+		plant.position = result.position - position
+		plant.rotate_y(randf_range(0, PI * 2))
+		if result.normal != Vector3.UP:
+			var up = result.normal
+			var axis = Vector3.UP.cross(up).normalized()
+			var angle = Vector3.UP.angle_to(up)
+			plant.rotate(axis, angle)
 
 func _ready():
-	camera = camera_rotation_node.get_node("camera")
-
 	space_state = get_world_3d().direct_space_state
-	# Spawn plants
-	for _i in num_initial_plant_attempts:
-		var random_point = aabb.position + Vector3(randf_range(-20, 20) * aabb.size.x, 0, randf_range(-20, 20) * aabb.size.z)
-		var query = PhysicsRayQueryParameters3D.create(random_point + Vector3.UP * max_raycast_distance, random_point - Vector3.UP * max_raycast_distance)
-		var result = space_state.intersect_ray(query)
-		if result and result.position.y > 0.2:
-			var plant = all_plants.duplicate()
-			remove_all_but_one(plant)
-			add_child(plant)
-			plant.position = result.position - position
-			plant.rotate_y(randf_range(0, PI * 2))
-			if result.normal != Vector3.UP:
-				var up = result.normal
-				var axis = Vector3.UP.cross(up).normalized()
-				var angle = Vector3.UP.angle_to(up)
-				plant.rotate(axis, angle)
+	camera = camera_rotation_node.get_node("camera")
+	ui_node.bought_flowers.connect(buy_flowers)
 
 	# Spawn trees		
 	for _attempts in num_initial_sapling_attempts:
@@ -150,6 +154,13 @@ func add_orb():
 func _process(delta):
 	var expected_lightnings_per_second: float = (ui_node.flower_max_level - ui_node.flower_level) / ui_node.flower_max_level
 	var expected_saplings_per_second: float = 50.0 * (ui_node.tree_level + 1) / (ui_node.tree_max_level + 1)
+
+	# try adding flowers
+	var flower_attempts_this_frame = 0
+	while flower_attempts_this_frame < max_flowers_per_frame and flower_attempts > 0:
+		flower_attempts_this_frame += 1
+		flower_attempts -= 1
+		try_adding_flower()
 
 	var num_lightnings = poisson(expected_lightnings_per_second * delta)
 	# I guess it makes sense for every lightning to hit a tree?
