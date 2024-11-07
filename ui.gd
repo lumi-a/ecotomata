@@ -10,9 +10,9 @@ var flower_range: Range
 
 @export var orbs: int = 0
 @export var tree_level: int = 0
-@export var tree_max_level: int = 10
+@export var tree_max_level: int = 5
 @export var flower_level: int = 0
-@export var flower_max_level: int = 10
+@export var flower_max_level: int = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -49,7 +49,7 @@ func buy_tree():
 		tree_level += 1
 		tree_range.value = tree_level
 		if tree_level < tree_max_level:
-			tree_cost *= 2
+			tree_cost *= 10
 		update_tree_button_text()
 		tree_buy_button.disabled = true
 
@@ -65,14 +65,12 @@ func buy_flower():
 		flower_level += 1
 		flower_range.value = flower_level
 		if flower_level < flower_max_level:
-			flower_cost *= 2
+			flower_cost *= 10
 		update_flower_button_text()
 		flower_buy_button.disabled = true
 
 func _process(_delta):
 	orb_label.text = str(orbs)
 	
-	if orbs >= tree_cost:
-		tree_buy_button.disabled = false
-	if orbs >= flower_cost:
-		flower_buy_button.disabled = false
+	tree_buy_button.disabled = orbs < tree_cost
+	flower_buy_button.disabled = orbs < flower_cost

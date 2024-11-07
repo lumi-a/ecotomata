@@ -55,6 +55,8 @@ mesh = SubResource("PlaneMesh_y60lx")
 [node name="island" parent="." node_paths=PackedStringArray("camera_rotation_node", "ui_node") instance=ExtResource("2_5c6a2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.810748, 0)
 script = ExtResource("4_c1278")
+expected_lightnings_per_second = null
+expected_saplings_per_second = null
 camera_rotation_node = NodePath("../camera_rotation")
 ui_node = NodePath("../ui")
 

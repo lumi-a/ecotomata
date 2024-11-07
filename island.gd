@@ -10,10 +10,6 @@ const min_neighbor_distance: float = 0.2
 const max_neighbor_distance: float = 1.5
 const max_raycast_distance: float = 50.0
 
-@export var expected_lightnings_per_second: float = 1.0
-@export var expected_saplings_per_second: float = 100.0
-const expected_orbs_per_second_per_tree: float = 0.1
-
 var space_state: PhysicsDirectSpaceState3D
 var aabb = $rock_largeE.get_aabb()
 var all_trees = preload("res://assets/trees/all.tscn").instantiate()
@@ -36,6 +32,7 @@ enum TreeState {
 }
 var tree_states: Dictionary = {}
 var tree_timers: Dictionary = {}
+var tree_orb_timers: Dictionary = {}
 var tree_fires: Dictionary = {}
 const grow_time = 0.5
 const started_burning_time = 0.25
@@ -151,6 +148,9 @@ func add_orb():
 	ui_node.orbs += 1
 
 func _process(delta):
+	var expected_lightnings_per_second: float = (ui_node.flower_max_level - ui_node.flower_level) / ui_node.flower_max_level
+	var expected_saplings_per_second: float = 50.0 * (ui_node.tree_level + 1) / (ui_node.tree_max_level + 1)
+
 	var num_lightnings = poisson(expected_lightnings_per_second * delta)
 	# I guess it makes sense for every lightning to hit a tree?
 	# Whatev
@@ -174,8 +174,9 @@ func _process(delta):
 		var id = tree.get_instance_id()
 		match tree_states[id]:
 			TreeState.Static:
-				var num_orbs = poisson(expected_orbs_per_second_per_tree * delta)
-				for _i in num_orbs:
+				tree_orb_timers[id] += delta
+				if tree_orb_timers[id] >= 1.0:
+					tree_orb_timers[id] -= 1.0
 					var orb = orb_instance.duplicate()
 					orb.position = camera.unproject_position(tree.position + Vector3.UP * 0.875)
 					orb.tree_exited.connect(add_orb)
@@ -187,6 +188,7 @@ func _process(delta):
 				if tree_timers[id] >= grow_time:
 					tree.scale = Vector3.ONE
 					tree_states[id] = TreeState.Static
+					tree_orb_timers[id] = 0
 			
 			TreeState.StartedBurning:
 				tree_timers[id] += delta
@@ -224,5 +226,6 @@ func _process(delta):
 					tree_fires.erase(id)
 					tree_states.erase(id)
 					tree_timers.erase(id)
+					tree_orb_timers.erase(id)
 					tree.queue_free()
 		tree_ix += 1
