@@ -47,52 +47,52 @@ layout_mode = 2
 theme = ExtResource("1_5nsp2")
 theme_override_constants/separation = 32
 
-[node name="orb-container" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="OrbContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="orb" type="TextureRect" parent="PanelContainer/VBoxContainer/orb-container"]
+[node name="Orb" type="TextureRect" parent="PanelContainer/VBoxContainer/OrbContainer"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("2_csf5k")
 
-[node name="orb-label" type="Label" parent="PanelContainer/VBoxContainer/orb-container"]
+[node name="OrbLabel" type="Label" parent="PanelContainer/VBoxContainer/OrbContainer"]
 layout_mode = 2
 
-[node name="trees-container" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="TreesContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="trees-buy" type="Button" parent="PanelContainer/VBoxContainer/trees-container"]
+[node name="TreesBuy" type="Button" parent="PanelContainer/VBoxContainer/TreesContainer"]
 layout_mode = 2
 disabled = true
 text = "+ Trees"
 
-[node name="trees-range" type="ProgressBar" parent="PanelContainer/VBoxContainer/trees-container"]
+[node name="TreesRange" type="ProgressBar" parent="PanelContainer/VBoxContainer/TreesContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_font_sizes/font_size = 4
 value = 20.0
 
-[node name="trees-description" type="Label" parent="PanelContainer/VBoxContainer/trees-container"]
+[node name="TreesDescription" type="Label" parent="PanelContainer/VBoxContainer/TreesContainer"]
 layout_mode = 2
 theme = ExtResource("3_a7ear")
 text = "Trees grow more often"
 horizontal_alignment = 1
 
-[node name="flowers-container" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="FlowersContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="flowers-buy" type="Button" parent="PanelContainer/VBoxContainer/flowers-container"]
+[node name="FlowersBuy" type="Button" parent="PanelContainer/VBoxContainer/FlowersContainer"]
 layout_mode = 2
 disabled = true
 text = "+ Flowers"
 
-[node name="flowers-range" type="ProgressBar" parent="PanelContainer/VBoxContainer/flowers-container"]
+[node name="FlowersRange" type="ProgressBar" parent="PanelContainer/VBoxContainer/FlowersContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_font_sizes/font_size = 4
 value = 20.0
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/flowers-container"]
+[node name="FlowersDescription" type="Label" parent="PanelContainer/VBoxContainer/FlowersContainer"]
 layout_mode = 2
 theme = ExtResource("3_a7ear")
 text = "Calm the storm

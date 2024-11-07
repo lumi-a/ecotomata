@@ -16,19 +16,19 @@ var flower_range: Range
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	orb_label = get_node("orb-label")
+	orb_label = $PanelContainer/VBoxContainer/OrbContainer/OrbLabel
 	
-	tree_buy_button = get_node("trees-buy")
+	tree_buy_button = $PanelContainer/VBoxContainer/TreesContainer/TreesBuy
 	tree_buy_button.connect("pressed", buy_tree)
-	tree_label = get_node("trees-label")
-	tree_range = get_node("trees-range")
+	tree_label = $PanelContainer/VBoxContainer/TreesContainer/TreesDescription
+	tree_range = $PanelContainer/VBoxContainer/TreesContainer/TreesRange
 	tree_range.min_value = 0
 	tree_range.max_value = tree_max_level
 	
-	flower_buy_button = get_node("flowers-buy")
+	flower_buy_button = $PanelContainer/VBoxContainer/FlowersContainer/FlowersBuy
 	flower_buy_button.connect("pressed", buy_flower)
-	flower_label = get_node("flowers-label")
-	flower_range = get_node("flowers-range")
+	flower_label = $PanelContainer/VBoxContainer/FlowersContainer/FlowersDescription
+	flower_range = $PanelContainer/VBoxContainer/FlowersContainer/FlowersRange
 	flower_range.min_value = 0
 	flower_range.max_value = flower_max_level
 
