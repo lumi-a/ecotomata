@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://camera_rotation.gd" id="1_lsrg4"]
 [ext_resource type="PackedScene" uid="uid://bcjiqjl5vu1tl" path="res://island.tscn" id="2_5c6a2"]
 [ext_resource type="Shader" path="res://water.gdshader" id="2_dsdxd"]
-[ext_resource type="PackedScene" uid="uid://uldf7cscwd8h" path="res://assets/orb.tscn" id="3_k2uxq"]
 [ext_resource type="Script" path="res://island.gd" id="4_c1278"]
+[ext_resource type="PackedScene" uid="uid://5gxvcn5626kc" path="res://ui.tscn" id="5_coy3p"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_a1jgo"]
 
@@ -52,9 +52,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 12.5, 1
 [node name="water" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_y60lx")
 
-[node name="orb" parent="." instance=ExtResource("3_k2uxq")]
-position = Vector2(529, 339)
-
 [node name="island" parent="." node_paths=PackedStringArray("camera_rotation_node") instance=ExtResource("2_5c6a2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.810748, 0)
 script = ExtResource("4_c1278")
@@ -65,3 +62,5 @@ expected_saplings_per_second = null
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.252998, 0.967467, 0, -0.967467, 0.252998, -6.61002, 40.3401, -0.405594)
 shadow_enabled = true
+
+[node name="ui" parent="." instance=ExtResource("5_coy3p")]

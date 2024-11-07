@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bqd3iuc5i6ovw"]
+
+[ext_resource type="FontFile" uid="uid://2pgabu03h8py" path="res://assets/FiraSans-Regular.ttf" id="1_jvsr7"]
+
+[resource]
+default_font = ExtResource("1_jvsr7")
+default_font_size = 16
+Label/colors/font_color = Color(0.25, 0.25, 0.25, 1)

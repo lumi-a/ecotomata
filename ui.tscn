@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://5gxvcn5626kc"]
+
+[ext_resource type="Theme" uid="uid://bw6ohcdth43os" path="res://assets/ui.tres" id="1_5nsp2"]
+[ext_resource type="Texture2D" uid="uid://btj7ljt1fqqho" path="res://assets/orb.png" id="2_csf5k"]
+[ext_resource type="Theme" uid="uid://bqd3iuc5i6ovw" path="res://assets/ui-small.tres" id="3_a7ear"]
+
+[sub_resource type="Theme" id="Theme_x7tse"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c06yw"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 0.768627)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_bottom_right = 4
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 211.0
+offset_bottom = 165.0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 193.0
+offset_bottom = 155.0
+theme = SubResource("Theme_x7tse")
+theme_override_styles/panel = SubResource("StyleBoxFlat_c06yw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_5nsp2")
+theme_override_constants/separation = 32
+
+[node name="orb-container" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="orb" type="TextureRect" parent="PanelContainer/VBoxContainer/orb-container"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_csf5k")
+
+[node name="orb-counter" type="Label" parent="PanelContainer/VBoxContainer/orb-container"]
+layout_mode = 2
+
+[node name="trees-container" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="trees-buy" type="Button" parent="PanelContainer/VBoxContainer/trees-container"]
+layout_mode = 2
+text = "+ Trees"
+
+[node name="trees-range" type="ProgressBar" parent="PanelContainer/VBoxContainer/trees-container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 4
+value = 20.0
+
+[node name="trees-description" type="Label" parent="PanelContainer/VBoxContainer/trees-container"]
+layout_mode = 2
+theme = ExtResource("3_a7ear")
+text = "Trees grow more often"
+horizontal_alignment = 1
+
+[node name="flowers-container" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="flowers-buy" type="Button" parent="PanelContainer/VBoxContainer/flowers-container"]
+layout_mode = 2
+text = "+ Flowers"
+
+[node name="flowers-range" type="ProgressBar" parent="PanelContainer/VBoxContainer/flowers-container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 4
+value = 20.0
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/flowers-container"]
+layout_mode = 2
+theme = ExtResource("3_a7ear")
+text = "Calm the storm
+"
+horizontal_alignment = 1
