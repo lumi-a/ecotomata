@@ -10,9 +10,9 @@ var flower_range: Range
 
 @export var orbs: int = 0
 @export var tree_level: int = 0
-@export var tree_max_level: int = 0
+@export var tree_max_level: int = 10
 @export var flower_level: int = 0
-@export var flower_max_level: int = 0
+@export var flower_max_level: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,15 +20,19 @@ func _ready() -> void:
 	
 	tree_buy_button = $PanelContainer/VBoxContainer/TreesContainer/TreesBuy
 	tree_buy_button.connect("pressed", buy_tree)
+	tree_buy_button.text = "+ Trees: O" + str(tree_cost)
 	tree_label = $PanelContainer/VBoxContainer/TreesContainer/TreesDescription
 	tree_range = $PanelContainer/VBoxContainer/TreesContainer/TreesRange
+	tree_range.value = 0
 	tree_range.min_value = 0
 	tree_range.max_value = tree_max_level
 	
 	flower_buy_button = $PanelContainer/VBoxContainer/FlowersContainer/FlowersBuy
 	flower_buy_button.connect("pressed", buy_flower)
+	flower_buy_button.text = "+ Flowers: O" + str(flower_cost)
 	flower_label = $PanelContainer/VBoxContainer/FlowersContainer/FlowersDescription
 	flower_range = $PanelContainer/VBoxContainer/FlowersContainer/FlowersRange
+	flower_range.value = 0
 	flower_range.min_value = 0
 	flower_range.max_value = flower_max_level
 
@@ -38,7 +42,7 @@ func update_tree_button_text():
 	if tree_level <= tree_max_level:
 		tree_buy_button.text = "+ Trees: O" + str(tree_cost)
 	else:
-		tree_buy_button.text = "+ Trees: Maxed!"
+		tree_buy_button.text = "+ Trees: Max!"
 func buy_tree():
 	if tree_cost <= orbs:
 		orbs -= tree_cost
@@ -52,9 +56,9 @@ func buy_tree():
 var flower_cost: int = 10
 func update_flower_button_text():
 	if flower_level <= flower_max_level:
-		flower_buy_button.text = "+ Flowers: O" + str(tree_cost)
+		flower_buy_button.text = "+ Flowers: O" + str(flower_cost)
 	else:
-		flower_buy_button.text = "+ Flowers: Maxed!"
+		flower_buy_button.text = "+ Flowers: Max!"
 func buy_flower():
 	if flower_cost <= orbs:
 		orbs -= flower_cost

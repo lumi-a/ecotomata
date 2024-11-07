@@ -4,14 +4,14 @@ extends Node3D
 var camera: Camera3D
 @export var ui_node: Control
 
-const num_initial_sapling_attempts: int = 1000
+const num_initial_sapling_attempts: int = 0
+const num_initial_plant_attempts: int = 0
 const min_neighbor_distance: float = 0.2
 const max_neighbor_distance: float = 1.5
-const num_plants: int = 1000
 const max_raycast_distance: float = 50.0
 
 @export var expected_lightnings_per_second: float = 1.0
-@export var expected_saplings_per_second: float = 10.0
+@export var expected_saplings_per_second: float = 100.0
 const expected_orbs_per_second_per_tree: float = 0.1
 
 var space_state: PhysicsDirectSpaceState3D
@@ -102,7 +102,7 @@ func _ready():
 
 	space_state = get_world_3d().direct_space_state
 	# Spawn plants
-	for _i in num_plants:
+	for _i in num_initial_plant_attempts:
 		var random_point = aabb.position + Vector3(randf_range(-20, 20) * aabb.size.x, 0, randf_range(-20, 20) * aabb.size.z)
 		var query = PhysicsRayQueryParameters3D.create(random_point + Vector3.UP * max_raycast_distance, random_point - Vector3.UP * max_raycast_distance)
 		var result = space_state.intersect_ray(query)
@@ -146,7 +146,10 @@ func light_up_tree(tree) -> bool:
 		tree.add_child(fire_instance)
 		return true
 	return false
-	
+
+func add_orb():
+	ui_node.orbs += 1
+
 func _process(delta):
 	var num_lightnings = poisson(expected_lightnings_per_second * delta)
 	# I guess it makes sense for every lightning to hit a tree?
@@ -162,9 +165,8 @@ func _process(delta):
 				add_child(new_lightning)
 	
 	var num_saplings = poisson(expected_saplings_per_second * delta)
-	if trees.size() > 0:
-		for _i in num_saplings:
-			try_adding_tree()
+	for _i in num_saplings:
+		try_adding_tree()
 
 	var tree_ix = 0
 	while tree_ix < trees.size():
@@ -176,7 +178,7 @@ func _process(delta):
 				for _i in num_orbs:
 					var orb = orb_instance.duplicate()
 					orb.position = camera.unproject_position(tree.position + Vector3.UP * 0.875)
-					
+					orb.tree_exited.connect(add_orb)
 					add_child(orb)
 
 			TreeState.Growing:
