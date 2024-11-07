@@ -14,6 +14,5 @@ func _physics_process(delta: float) -> void:
 	var normalized = difference.normalized()
 	apply_force(normalized * 2000)
 	if position.x < 0 or position.y < 0:
-		print("orbbbb")
 		queue_free()
 	pass
