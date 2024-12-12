@@ -164,6 +164,7 @@ func _process(delta):
 
 	var won = ui_node.tree_level == ui_node.tree_max_level and ui_node.flower_level == ui_node.flower_max_level
 	if won:
+		victory.visible = true
 		won_time += delta
 		if won_time < 1.0:
 			ui_node.modulate.a = 1.0 - won_time
@@ -237,6 +238,8 @@ func _process(delta):
 			TreeState.BurningDown:
 				tree_timers[id] += delta
 				tree.scale = lerp(Vector3.ONE, Vector3.ZERO, tree_timers[id] / burning_down_time)
+				tree_fires[id].get_child(0).light_size = clamp(lerp(0.2, 0.0, tree_timers[id] / burning_down_time), 0, 1)
+				tree_fires[id].get_child(0).light_energy = clamp(lerp(1.0, 0.0, tree_timers[id] / burning_down_time), 0, 1)
 				if tree_timers[id] >= burning_down_time:
 					for child in tree_fires[id].get_children():
 						# If particle-generator, stop emission:

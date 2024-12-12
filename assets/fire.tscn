@@ -60,6 +60,11 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [node name="fire" type="Node3D"]
 
+[node name="light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+light_color = Color(1, 0.690667, 0.36, 1)
+light_size = 0.2
+
 [node name="outer" type="GPUParticles3D" parent="."]
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_57kjm")
