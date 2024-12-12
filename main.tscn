@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dj4v6ns8px2mu"]
+[gd_scene load_steps=13 format=3 uid="uid://dj4v6ns8px2mu"]
 
 [ext_resource type="Script" path="res://camera_rotation.gd" id="1_lsrg4"]
 [ext_resource type="PackedScene" uid="uid://bcjiqjl5vu1tl" path="res://island.tscn" id="2_5c6a2"]
@@ -37,6 +37,8 @@ size = Vector2(128, 128)
 subdivide_width = 32
 subdivide_depth = 32
 
+[sub_resource type="Theme" id="Theme_pqc6n"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -52,14 +54,34 @@ transform = Transform3D(1, 0, 0, 0, 0.395546, 0.918447, 0, -0.918447, 0.395546, 
 [node name="water" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_y60lx")
 
-[node name="island" parent="." node_paths=PackedStringArray("camera_rotation_node", "ui_node") instance=ExtResource("2_5c6a2")]
+[node name="island" parent="." node_paths=PackedStringArray("camera_rotation_node", "ui_node", "victory") instance=ExtResource("2_5c6a2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.810748, 0)
 script = ExtResource("4_c1278")
 camera_rotation_node = NodePath("../camera_rotation")
 ui_node = NodePath("../ui")
+victory = NodePath("../victory")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.252998, 0.967467, 0, -0.967467, 0.252998, -6.61002, 40.3401, -0.405594)
 shadow_enabled = true
 
 [node name="ui" parent="." instance=ExtResource("5_coy3p")]
+
+[node name="victory" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -11.5
+offset_right = 79.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_pqc6n")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Vegetation Restored"

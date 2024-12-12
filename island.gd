@@ -3,6 +3,7 @@ extends Node3D
 @export var camera_rotation_node: Node3D
 var camera: Camera3D
 @export var ui_node: Control
+@export var victory: Label
 
 const num_initial_sapling_attempts: int = 0
 const num_initial_plant_attempts: int = 0
@@ -40,7 +41,9 @@ const burning_down_time = 0.5
 const ember_time = 1.0
 
 var flower_attempts = 0 # How many flowers should be bought in the next couple frames
-var max_flowers_per_frame = 10 # At most how many flowers to try adding per frame
+var max_flowers_per_frame = 3 # At most how many flowers to try adding per frame
+
+var won_time = 0.0
 
 func remove_all_but_one(variant: Variant):
 	var children = variant.get_children()
@@ -118,6 +121,8 @@ func _ready():
 	space_state = get_world_3d().direct_space_state
 	camera = camera_rotation_node.get_node("camera")
 	ui_node.bought_flowers.connect(buy_flowers)
+	victory.modulate.a = 0
+
 
 	# Spawn trees		
 	for _attempts in num_initial_sapling_attempts:
@@ -152,8 +157,20 @@ func add_orb():
 	ui_node.orbs += 1
 
 func _process(delta):
-	var expected_lightnings_per_second: float = (ui_node.flower_max_level - ui_node.flower_level) / ui_node.flower_max_level
-	var expected_saplings_per_second: float = 50.0 * (ui_node.tree_level + 3) / (ui_node.tree_max_level + 3)
+	var expected_lightnings_per_second: float = 1.0 * (0.0 if ui_node.flower_max_level == ui_node.flower_level else 1.5 ** (float(-ui_node.flower_level)))
+	var expected_saplings_per_second: float = 50.0 * float(ui_node.tree_level + 1) / float(ui_node.tree_max_level + 1)
+	print(str(expected_lightnings_per_second) + " " + str(expected_saplings_per_second))
+
+	var won = ui_node.tree_level == ui_node.tree_max_level and ui_node.flower_level == ui_node.flower_max_level
+	if won:
+		won_time += delta
+		if won_time < 1.0:
+			ui_node.modulate.a = 1.0 - won_time
+			victory.modulate.a = won_time
+		else:
+			ui_node.modulate.a = 0
+			victory.modulate.a = 1
+
 
 	# try adding flowers
 	var flower_attempts_this_frame = 0
@@ -185,13 +202,14 @@ func _process(delta):
 		var id = tree.get_instance_id()
 		match tree_states[id]:
 			TreeState.Static:
-				tree_orb_timers[id] += delta
-				if tree_orb_timers[id] >= 1.0:
-					tree_orb_timers[id] -= 1.0
-					var orb = orb_instance.duplicate()
-					orb.position = camera.unproject_position(tree.position + Vector3.UP * 0.875)
-					orb.tree_exited.connect(add_orb)
-					add_child(orb)
+				if not won:
+					tree_orb_timers[id] += delta
+					if tree_orb_timers[id] >= 1.0:
+						tree_orb_timers[id] -= 1.0
+						var orb = orb_instance.duplicate()
+						orb.position = camera.unproject_position(tree.position + Vector3.UP * 0.875)
+						orb.tree_exited.connect(add_orb)
+						add_child(orb)
 
 			TreeState.Growing:
 				tree_timers[id] += delta
