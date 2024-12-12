@@ -15,9 +15,9 @@ var flower_range: Range
 
 @export var orbs: int = 0
 @export var tree_level: int = 0
-@export var tree_max_level: int = 1
+@export var tree_max_level: int = 8
 @export var flower_level: int = 0
-@export var flower_max_level: int = 1
+@export var flower_max_level: int = 5
 
 func _ready() -> void:
 	orb_label = $PanelContainer/VBoxContainer/OrbContainer/OrbLabel
