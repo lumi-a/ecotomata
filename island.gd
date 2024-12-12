@@ -3,7 +3,8 @@ extends Node3D
 @export var camera_rotation_node: Node3D
 var camera: Camera3D
 @export var ui_node: Control
-@export var victory: Label
+@export var victory: Control
+@export var environment: WorldEnvironment
 
 const num_initial_sapling_attempts: int = 0
 const num_initial_plant_attempts: int = 0
@@ -170,6 +171,10 @@ func _process(delta):
 		else:
 			ui_node.modulate.a = 0
 			victory.modulate.a = 1
+
+	var lambda = min(1, 3 * delta)
+	environment.environment.background_energy_multiplier = lerp(environment.environment.background_energy_multiplier, lerp(0.1, 0.5, ui_node.flower_level / ui_node.flower_max_level), lambda)
+	print(environment.environment.background_energy_multiplier)
 
 
 	# try adding flowers
