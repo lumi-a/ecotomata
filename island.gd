@@ -153,7 +153,7 @@ func add_orb():
 
 func _process(delta):
 	var expected_lightnings_per_second: float = (ui_node.flower_max_level - ui_node.flower_level) / ui_node.flower_max_level
-	var expected_saplings_per_second: float = 50.0 * (ui_node.tree_level + 1) / (ui_node.tree_max_level + 1)
+	var expected_saplings_per_second: float = 50.0 * (ui_node.tree_level + 3) / (ui_node.tree_max_level + 3)
 
 	# try adding flowers
 	var flower_attempts_this_frame = 0
