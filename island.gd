@@ -160,7 +160,6 @@ func add_orb():
 func _process(delta):
 	var expected_lightnings_per_second: float = 1.0 * (0.0 if ui_node.flower_max_level == ui_node.flower_level else 1.5 ** (float(-ui_node.flower_level)))
 	var expected_saplings_per_second: float = 50.0 * float(ui_node.tree_level + 1) / float(ui_node.tree_max_level + 1)
-	print(str(expected_lightnings_per_second) + " " + str(expected_saplings_per_second))
 
 	var won = ui_node.tree_level == ui_node.tree_max_level and ui_node.flower_level == ui_node.flower_max_level
 	if won:
@@ -175,7 +174,6 @@ func _process(delta):
 
 	var lambda = min(1, 3 * delta)
 	environment.environment.background_energy_multiplier = lerp(environment.environment.background_energy_multiplier, lerp(0.1, 0.5, ui_node.flower_level / ui_node.flower_max_level), lambda)
-	print(environment.environment.background_energy_multiplier)
 
 
 	# try adding flowers
